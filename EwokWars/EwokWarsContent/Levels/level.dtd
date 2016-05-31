@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT level       ((hud, eventobjects, room+) |
+					  (eventobjects, room+))>
+<!ELEMENT eventobjects (portaldefinition*)  >
+<!ELEMENT portaldefinition (model) >
+<!ELEMENT model       (#PCDATA) >
+<!ELEMENT room        (name, design, enemies) >
+<!ELEMENT name        (#PCDATA) >
+<!ELEMENT design      (background, walls, portals, movableobject*)>
+<!ELEMENT background  (#PCDATA) >
+<!ELEMENT walls       (#PCDATA) >
+
+<!ELEMENT portals     (portal+)>
+<!ELEMENT portal      (position)>
+<!ELEMENT movableobject (position, model)>
+<!ELEMENT position    (x, y) >
+<!ELEMENT x           (#PCDATA) >
+<!ELEMENT y           (#PCDATA) >
+
+<!ELEMENT enemies     (enemy*)>
+<!ELEMENT enemy       (position | patrolling) >
+<!ELEMENT patrolling  ((position),(position+))>
+<!ELEMENT hud		  EMPTY>
+
+
+<!ATTLIST enemydefinition
+    eId         NMTOKEN    #REQUIRED >
+<!ATTLIST portaldefinition
+    pId         NMTOKEN    #REQUIRED
+    pPartnerId  NMTOKEN    #IMPLIED >
+<!ATTLIST room
+    rId         NMTOKEN    #REQUIRED
+    width       NMTOKEN    #REQUIRED
+    height      NMTOKEN    #REQUIRED >
+<!ATTLIST portal
+    pIdRef      NMTOKEN    #REQUIRED >
+<!ATTLIST enemy 
+    type  (battledroid|stormtrooper)    #REQUIRED 
+	viewdirection (east|west|north|south) #IMPLIED>
+<!ATTLIST hud 
+    type  (Game|Debug|None) #REQUIRED>
